@@ -2,10 +2,18 @@ import glob                         # this module helps in selecting files
 import pandas as pd                 # this module helps in processing CSV files
 import xml.etree.ElementTree as ET  # this module helps in processing XML files.
 from datetime import datetime
+import sys as sys
+import os as os
 
 tmpfile    = "dealership_temp.tmp"               # file used to store all extracted data
 logfile    = "dealership_logfile.txt"            # all event logs will be stored in this file
 targetfile = "dealership_transformed_data.csv"   # file where transformed data is stored
+
+### DOWNLOAD FROM URL AND UNZIP ###
+
+# About The Data
+# The file dealership_data contains CSV, JSON, and XML files for used car data 
+# which contain features named car_model, year_of_manufacture, price, and fuel.
 
 # run the shell command to downlaod the zip file
 # > !wget https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0221EN-SkillsNetwork/labs/module%206/Lab%20-%20Extract%20Transform%20Load/data/datasource.zip
@@ -13,9 +21,23 @@ targetfile = "dealership_transformed_data.csv"   # file where transformed data i
 # run the shell command to unzip the download
 # > !unzip datasource.zip -d dealership_data
 
-# About The Data
-# The file dealership_data contains CSV, JSON, and XML files for used car data 
-# which contain features named car_model, year_of_manufacture, price, and fuel.
+zip_download_url = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0221EN-SkillsNetwork/labs/module%206/Lab%20-%20Extract%20Transform%20Load/data/datasource.zip'
+zip_filename = 'datasource.zip'
+unzip_dir = 'dealership_data'
+
+if sys.platform == 'win32': # run windows cmd commands    
+    os.system('wget ' + zip_download_url)
+    os.system('mkdir ' + unzip_dir)
+    os.system('tar -xf ' + zip_filename + ' --directory ' + unzip_dir)
+elif sys.platform == 'linux': # run linux bash commands (NOT TESTED)
+    os.system('wget ' + zip_download_url)
+    os.system('unzip ' + zip_filename + ' -d ' + unzip_dir)
+else: # just want to believe linux commands will work for other OS (e.g 'macOS') (NOT TESTED)
+    os.system('wget ' + zip_download_url)
+    os.system('unzip ' + zip_filename + ' -d ' + unzip_dir)
+
+### END DOWNLOAD FROM URL AND UNZIP ###
+
 
 ### EXTRACT ###
 
