@@ -151,6 +151,7 @@ log("starting Extract process")
 
 # Call the Extract function
 extracted_data = extract()
+print(extracted_data)
 
 # Log that you have completed the Extract step
 log("end of Extract process")
