@@ -153,6 +153,13 @@ log("starting Extract process")
 extracted_data = extract()
 print(extracted_data)
 
+convert_dict = {
+    'year_of_manufacture': int,
+    'price': float
+    }
+
+extracted_data = extracted_data.astype(convert_dict)
+
 # Log that you have completed the Extract step
 log("end of Extract process")
 
@@ -161,6 +168,7 @@ log("starting Transform process")
 
 # Call the Transform function
 transformed_data = transform(extracted_data)
+print(transformed_data)
 
 # Log that you have completed the Transform step
 log("end of Transform process")
