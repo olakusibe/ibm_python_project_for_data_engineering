@@ -3,5 +3,5 @@
 *.txt
 *.xml
 *.json
-datasource/
+dealership_data/
 source/
